@@ -8,11 +8,13 @@ from banner import banner
 
 def show_break_popup():
     root = Tk()
-    root.withdraw()  
+    root.withdraw()
     response = messagebox.askquestion("Break Time", "Have you been on a break?")
-    root.destroy()  
+    root.update_idletasks()
+    root.destroy()
 
     return response.lower() == "yes"
+
 
 def format_timedelta(td):
     seconds = td.total_seconds()
