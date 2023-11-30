@@ -30,6 +30,7 @@ def calculate_work_time(start_time):
     work_start_time = start_time
     total_break_time = timedelta(0)
     last_elapsed = timedelta(0)
+    count = 0
 
     while True:
         current_time = datetime.now()
@@ -42,6 +43,7 @@ def calculate_work_time(start_time):
             if screen_locked_time is None:
                 screen_locked_time = current_time
                 print("Screen locked. Work paused.")
+                count+=1
 
         else:  
             if screen_locked_time is not None:
@@ -69,10 +71,13 @@ def calculate_work_time(start_time):
         os.system('cls' if os.name == 'nt' else 'clear')
         banner()
         print("\n"*5)
-        print(f"{' '*50}Start Time: {start_time.strftime(fmt)}")
-        print(f"{' '*50}Current Time: {current_time.strftime(fmt)}")
-        print(f"{' '*50}Accurate Work Time: {format_timedelta(elapsed_work_time)}")
-        print(f"{' '*50}Total Break Time: {format_timedelta(total_break_time)}")
+        print(f"{' '*50}Start Time:              {start_time.strftime(fmt)}")
+        print(f"{' '*50}Current Time:            {current_time.strftime(fmt)}")
+        print(f"{' '*50}Accurate Work Time:      {format_timedelta(elapsed_work_time)}")
+        print(f"{' '*50}Total Break Time:        {format_timedelta(total_break_time)}")
+        print(f"{' '*50}Last locked Time:        {screen_locked_time}")
+        print(f"{' '*50}Number of times locked:  {count}")
+     
 
 
         time.sleep(1)
