@@ -24,6 +24,13 @@ def format_timedelta(td):
 
     return f"{int(hours)} hours, {int(minutes)} minutes, {int(seconds)} seconds"
 
+def predict_work_end(break_hours=0):
+    current_time = datetime.now()
+    work_duration = timedelta(hours=8) + timedelta(hours=break_hours)
+    predicted_end_time = current_time + work_duration
+
+    return predicted_end_time
+
 def calculate_work_time(start_time):
     fmt = '%Y-%m-%d %H:%M:%S'  
     screen_locked_time = None
@@ -67,16 +74,21 @@ def calculate_work_time(start_time):
             work_start_time = current_time - last_elapsed
 
         last_elapsed = elapsed_work_time
+        remaining_work_time = timedelta(hours=8) - elapsed_work_time
+        if remaining_work_time < timedelta(0):
+            remaining_work_time = timedelta(0)
 
+        predicted_end_time = current_time + remaining_work_time + total_break_time
         os.system('cls' if os.name == 'nt' else 'clear')
         banner()
         print("\n"*5)
-        print(f"{' '*50}Start Time:              {start_time.strftime(fmt)}")
-        print(f"{' '*50}Current Time:            {current_time.strftime(fmt)}")
-        print(f"{' '*50}Accurate Work Time:      {format_timedelta(elapsed_work_time)}")
-        print(f"{' '*50}Total Break Time:        {format_timedelta(total_break_time)}")
-        print(f"{' '*50}Last locked Time:        {screen_locked_time}")
-        print(f"{' '*50}Number of times locked:  {count}")
+        print(f"{' '*20}Start Time:              {start_time.strftime(fmt)}")
+        print(f"{' '*20}Current Time:            {current_time.strftime(fmt)}")
+        print(f"{' '*20}Accurate Work Time:      {format_timedelta(elapsed_work_time)}")
+        print(f"{' '*20}Total Break Time:        {format_timedelta(total_break_time)}")
+        print(f"{' '*20}Last locked Time:        {screen_locked_time}")
+        print(f"{' '*20}Number of times locked:  {count}")
+        print(f"{' '*20}Predicted end time:      {predicted_end_time.strftime(fmt)}")
      
 
 
