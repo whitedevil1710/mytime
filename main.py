@@ -60,7 +60,6 @@ def calculate_work_time(start_time):
                 else:
                     locked_during_work_time = screen_locked_time - work_start_time
                     work_start_time += locked_during_work_time
-                    total_break_time += locked_during_work_time
                     elapsed_since_last_iteration -= locked_during_work_time
 
                 screen_locked_time = None
