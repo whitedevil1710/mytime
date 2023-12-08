@@ -161,7 +161,7 @@ def calculate_work_time(start_time, elapsed_work_time, total_break_time, last_lo
 def show_break_popup():
     root = Tk()
     root.withdraw()
-    response = messagebox.askquestion("Tester Break Time", "Have you been on a break?")
+    response = messagebox.askquestion("Test Break Time", "Have you been on a break?")
     root.update_idletasks()
     root.destroy()
 
