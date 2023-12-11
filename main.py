@@ -11,7 +11,8 @@ from banner import banner
 def show_break_popup():
     root = Tk()
     root.withdraw()
-    response = messagebox.askquestion("Break Time", "Have you been on a break?")
+    root.attributes(('-topmost', True))
+    response = messagebox.askquestion("Tester Break Time", "Have you been on a break?")
     root.update_idletasks()
     root.destroy()
 
@@ -37,7 +38,6 @@ def calculate_work_time(start_time):
     last_elapsed = timedelta(0)
     count = 0
     lock = timedelta(0)
-    num = 0
 
     while True:
         current_time = datetime.now()
@@ -49,7 +49,6 @@ def calculate_work_time(start_time):
             if screen_locked_time is None:
                 screen_locked_time = current_time
                 print("Screen locked. Work paused.")
-                count += 1
                 lock = current_time
         else:
             if screen_locked_time is not None:
@@ -58,7 +57,7 @@ def calculate_work_time(start_time):
                 response = show_break_popup()
                 if response:
                     total_break_time += screen_locked_duration
-                    num+=1
+                    count += 1
                 else:
                     locked_during_work_time = screen_locked_time - work_start_time
                     work_start_time += locked_during_work_time
@@ -87,8 +86,7 @@ def calculate_work_time(start_time):
         print(f"{' ' * 20}Accurate Work Time:      {format_timedelta(elapsed_work_time)}")
         print(f"{' ' * 20}Total Break Time:        {format_timedelta(total_break_time)}")
         print(f"{' ' * 20}Last locked Time:        {lock}")
-        print(f"{' ' * 20}Number of times locked:  {count}")
-        print(f"{' ' * 20}Total number of breaks:  {num}")
+        print(f"{' ' * 20}Number of breaks:        {count}")
         print(f"{' ' * 20}Predicted end time:      {predicted_end_time.strftime(fmt)}")
 
         time.sleep(1)
