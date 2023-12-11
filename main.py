@@ -7,11 +7,11 @@ from lock import check_screen
 from banner import banner
 
 # Showing the popup asking if you were on break or not.
-
 def show_break_popup():
     root = Tk()
     root.withdraw()
-    root.attributes(('-topmost', True))
+    root.attributes('-topmost', True)
+    root.grab_set()
     response = messagebox.askquestion("Tester Break Time", "Have you been on a break?")
     root.update_idletasks()
     root.destroy()
