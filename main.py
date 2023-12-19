@@ -10,9 +10,7 @@ from banner import banner
 def show_break_popup():
     root = Tk()
     root.withdraw()
-    root.attributes('-topmost', True)
-    root.grab_set()
-    response = messagebox.askquestion("Tester Break Time", "Have you been on a break?")
+    response = messagebox.askquestion("Break Time", "Have you been on a break?")
     root.update_idletasks()
     root.destroy()
 
