@@ -29,7 +29,7 @@ To install the time-tracking utility, follow these steps:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/time-tracking.git
+   git clone https://github.com/whitedevil1710/mytime.git
     ```
 1. Navigate to the project directory:
     ```bash
