@@ -33,7 +33,7 @@ To install the time-tracking utility, follow these steps:
     ```
 1. Navigate to the project directory:
     ```bash
-    cd time-tracking
+    cd mytime
     ```
 1. Run the setup script:
    ```bash
